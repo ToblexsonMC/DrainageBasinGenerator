@@ -9,6 +9,7 @@ public class ElevationTile extends Tile
 	public ElevationTile(int xCoord, int yCoord, int width, int height, JFrame frame) 
 	{
 		super(xCoord, yCoord, width, height, frame);
+		elevation = 0;
 	}
 
 	public int getElevation() 
