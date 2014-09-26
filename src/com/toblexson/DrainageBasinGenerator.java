@@ -16,10 +16,6 @@ public class DrainageBasinGenerator
 			System.out.println(".");
 		}
 		
-		//System.out.println(Values.maxX);
-		//System.out.println(Values.maxY);
-		//System.out.println(Values.scale);
-		
 		new MainFrame();
 	}
 }

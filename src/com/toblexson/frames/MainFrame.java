@@ -3,22 +3,23 @@ package com.toblexson.frames;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
+import com.toblexson.generators.ElevationGenerator;
 import com.toblexson.reference.Values;
-import com.toblexson.tiles.Tile;
+import com.toblexson.tiles.ElevationTile;
 import com.toblexson.util.FrameHelper;
 
 public class MainFrame extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	
-	private Tile[][] grid;
+	private ElevationTile[][] grid;
 
 	public MainFrame()
 	{	
 		genGrid();
 		genFrame();
+		new ElevationGenerator(grid);
 	}
 
 	private void genFrame() 
@@ -34,45 +35,48 @@ public class MainFrame extends JFrame
 	
 	private void genGrid() 
 	{
-		grid = new Tile[Values.maxX][Values.maxY];
+		grid = new ElevationTile[Values.maxX][Values.maxY];
 		
+		int midHeight = FrameHelper.scrSize.height / 2;
 		int midWidth = FrameHelper.scrSize.width / 2;
-		int midHeight = FrameHelper.scrSize.width / 2;
-		//middle index in Grid array
-		int midGridIndex = (Values.maxX * Values.maxY) / 2;
-		//space to be used
-		int usableWidth = FrameHelper.scrSize.height - 20;
-		int usableHeight = FrameHelper.scrSize.width - 20;
-		//sets space to smallest of the two values above
-		int space;
-		if(usableHeight < usableWidth) 
+		int maximumSize;
+		
+		if(FrameHelper.scrSize.height < FrameHelper.scrSize.width)
 		{
-			space = usableHeight;
+			maximumSize = FrameHelper.scrSize.height;
 		} else
 		{
-			space = usableWidth;
+			maximumSize = FrameHelper.scrSize.width;
 		}
-		//size of each square
-		int size = space / (Values.maxX * Values.maxY);
 		
-		System.out.println(size);
+		int smallestFrameValue;
+		
+		if(Values.maxX < Values.maxY)
+		{
+			smallestFrameValue = Values.maxX;
+		} else
+		{
+			smallestFrameValue = Values.maxY;
+		}
+		
+		int independentSize = (maximumSize - 90) / smallestFrameValue; 
+		//System.out.println(smallestFrameValue);
+		//System.out.println(independentSize);
+		
 		
 		for(int a = 0; a < Values.maxX; a++)
 		{
 			for(int b = 0; b < Values.maxY; b++)
 			{
-				int x = a;
-				int y = b;
 								
-				grid[a][b] = new Tile((x * size) + 10, (y * size) + 10, size, size, this);
-				//STILL NOT WORKING
+				grid[a][b] = new ElevationTile(((a * independentSize) + midWidth) - ((independentSize * Values.maxX) / 2), ((b * independentSize) + midHeight) - ((independentSize * Values.maxY) / 2), independentSize, independentSize, this);
 			}
 		}
 	}
 	
 	public void paint(Graphics graphics)
 	{
-		System.out.println("painting...");
+		//System.out.println("painting...");
 		for(int a = 0; a < Values.maxX; a++)
 		{
 			for(int b = 0; b < Values.maxY; b++)

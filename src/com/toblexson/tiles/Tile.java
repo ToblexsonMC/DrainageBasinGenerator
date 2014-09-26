@@ -1,9 +1,6 @@
 package com.toblexson.tiles;
 
-import java.awt.Graphics;
-
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 public class Tile 
 {
@@ -11,16 +8,12 @@ public class Tile
 	private int yCoord;
 	private int width;
 	private int height;
-	private JFrame frame;
-	
 	public Tile(int xCoord, int yCoord, int width, int height, JFrame frame)
 	{
 		this.setxCoord(xCoord);
 		this.setyCoord(yCoord);
 		this.setWidth(width);
 		this.setHeight(height);
-		this.frame = frame;
-		System.out.println(xCoord + "," + yCoord);		
 	}
 
 	public int getxCoord() 
