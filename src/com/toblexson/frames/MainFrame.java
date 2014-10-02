@@ -1,5 +1,6 @@
 package com.toblexson.frames;
 
+import java.awt.Color;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -86,9 +87,22 @@ public class MainFrame extends JFrame
 				int y = grid[a][b].getyCoord();
 				int width = grid[a][b].getWidth();
 				int height = grid[a][b].getHeight();
+				
 				//System.out.println(x + "," + y + "\t" + width + "," + height);	
 				
 				graphics.drawRect(x, y, width, height);
+				switch(grid[a][b].getElevation())
+				{
+					case -10:
+						graphics.setColor(new Color(000, 100, 000));
+						break;
+					case 0:
+						graphics.setColor(new Color(000, 120, 000));
+						break;
+					case 10:
+						graphics.setColor(new Color(000, 140, 000));
+				}
+				graphics.fillRect(x, y, width + 1, height + 1);
 			}
 		}
 	}
