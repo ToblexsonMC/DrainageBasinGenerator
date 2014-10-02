@@ -101,6 +101,8 @@ public class MainFrame extends JFrame
 						break;
 					case 10:
 						graphics.setColor(new Color(000, 140, 000));
+					case 20:
+						graphics.setColor(new Color(000, 160, 000));
 				}
 				graphics.fillRect(x, y, width + 1, height + 1);
 			}
